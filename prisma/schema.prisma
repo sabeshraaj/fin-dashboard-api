@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+model User {
+  id        Int        @id @default(autoincrement())
+  name      String
+  email     String     @unique
+  password  String     
+  role      Role       @default(VIEWER) 
+  status    UserStatus @default(ACTIVE)
+  
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  records   Record[]
+}
+
+model Record {
+  id        Int        @id @default(autoincrement())
+  
+  amount    Decimal    @db.Decimal(10, 2) 
+  type      RecordType
+  
+  
+  category  RecordCategory 
+  
+  date      DateTime   
+  notes     String?
+
+  
+  createdAt DateTime   @default(now()) 
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?  
+
+  userId    Int
+  user      User       @relation(fields: [userId], references: [id])
+}
+
+enum Role {
+  VIEWER
+  ANALYST
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+}
+
+enum RecordType {
+  INCOME
+  EXPENSE
+}
+
+
+enum RecordCategory {
+  SALARY
+  FREELANCE
+  FOOD
+  RENT
+  UTILITIES
+  ENTERTAINMENT
+  OTHER
+}
