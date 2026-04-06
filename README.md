@@ -147,8 +147,8 @@ The following documents the functionality and security validation of the API usi
  
 **8. Database Cleanup**
  
-![The invalid manually inserted record is removed from the database to restore sequence integrity](results/image8.jpg)
+![The invalid manually inserted record is removed from the database to restore sequence integrity](results/image8.jpeg)
  
 **9. API Registration Correction**
  
-![The user is re-registered through the proper API endpoint, ensuring the password is hashed and the database sequence is correctly updated](results/image9.jpg)
+![The user is re-registered through the proper API endpoint, ensuring the password is hashed and the database sequence is correctly updated](results/image9.jpeg)
